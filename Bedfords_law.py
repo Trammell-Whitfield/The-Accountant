@@ -1019,6 +1019,19 @@ TIME SERIES ANALYSIS:
     
 
 
+# Example usage (how to plug the data into the analyser)
+'''
+data = pd.DataFrame({
+    'amount': [100, 200, 9999, 10000, -50],
+    'payee': ['A', 'B', 'C', 'D', 'E'],
+    'date': ['2023-01-01', '2023-01-02', '2023-01-03', '2023-01-04', '2023-01-05'],
+    'type': ['income', 'expense', 'income', 'income', 'expense']
+})
+
+analyzer = AdvancedLedgerAnalyzer(data)
+results = analyzer.generate_comprehensive_analysis()
+print(analyzer.generate_summary_report())
+'''
 
 
 
