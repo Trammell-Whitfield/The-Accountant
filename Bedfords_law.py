@@ -430,6 +430,14 @@ def main():
 if __name__ == "__main__":
     analyzer, results = main()
 
+
+# PART TWO!!!
+# PART TWO!!!
+# PART TWO!!!
+# PART TWO!!!
+# Advanced Analyzer 
+
+
 class AdvancedLedgerAnalyzer:
     """
     Advanced accounting ledger analyzer that complements BenfordsLawAnalyzer.
@@ -1016,4 +1024,3 @@ TIME SERIES ANALYSIS:
 
 
 
-    
