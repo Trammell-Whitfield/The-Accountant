@@ -1036,4 +1036,41 @@ print(analyzer.generate_summary_report())
 
 
 
+# Assuming BenfordsLawAnalyzer and AdvancedLedgerAnalyzer classes are defined elsewhere
+
+def main():
+    """Main function to analyze the synthetic accounting ledger from CSV."""
+    # Load the CSV, parsing the 'date' column as datetime
+    df = pd.read_csv('realistic_accounting_ledger.csv', parse_dates=['date'])
+
+    # Select and rename columns for AdvancedLedgerAnalyzer
+    df = df[['amount', 'company', 'date', 'account_name']]
+    df = df.rename(columns={'company': 'payee'})
+
+    # Create 'type' column based on account_name
+    df['type'] = df['account_name'].apply(
+        lambda x: 'expense' if 'Expense' in x else ('income' if 'Revenue' in x or 'Sales' in x else 'other')
+    )
+
+    # Benford's Law analysis
+    print("Performing Benford's Law analysis...")
+    benford_analyzer = BenfordsLawAnalyzer()
+    amounts = df['amount']  # Pass the 'amount' column as a Series
+    benford_results = benford_analyzer.analyze_dataset(amounts, "Synthetic Accounting Ledger")
+    benford_report = benford_analyzer.generate_report(benford_results)
+    print(benford_report)
+    benford_analyzer.create_visualization(benford_results)
+
+    # Advanced ledger analysis
+    print("\nPerforming advanced ledger analysis...")
+    advanced_analyzer = AdvancedLedgerAnalyzer(df)
+    advanced_results = advanced_analyzer.generate_comprehensive_analysis()
+    advanced_report = advanced_analyzer.generate_summary_report()
+    print(advanced_report)
+
+    print("\nAnalysis complete!")
+    return benford_analyzer, benford_results, advanced_analyzer, advanced_results
+
+if __name__ == "__main__":
+    benford_analyzer, benford_results, advanced_analyzer, advanced_results = main()
 
