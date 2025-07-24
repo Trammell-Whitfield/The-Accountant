@@ -6,6 +6,7 @@ from scipy import stats
 from typing import Dict, List, Tuple, Optional
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta
+from typing import Dict, List, Tuple, Optional
 import warnings
 warnings.filterwarnings('ignore')
 class BenfordsLawAnalyzer:
@@ -1039,13 +1040,30 @@ print(analyzer.generate_summary_report())
 # Assuming BenfordsLawAnalyzer and AdvancedLedgerAnalyzer classes are defined elsewhere
 
 def main():
-    """Main function to analyze the synthetic accounting ledger from CSV."""
+    """Main function to analyze the accounting ledger from CSV."""
     # Load the CSV, parsing the 'date' column as datetime
     df = pd.read_csv('realistic_accounting_ledger.csv', parse_dates=['date'])
 
-    # Select and rename columns for AdvancedLedgerAnalyzer
-    df = df[['amount', 'company', 'date', 'account_name']]
-    df = df.rename(columns={'company': 'payee'})
+    # Define required and optional columns
+    required_columns = ['amount', 'date', 'account_name']
+    payee_candidates = ['company', 'vendor', 'recipient', 'payee']
+    available_columns = [col for col in required_columns if col in df.columns]
+    payee_column = next((col for col in payee_candidates if col in df.columns), None)
+
+    # Check for required columns
+    missing_required = [col for col in required_columns if col not in df.columns]
+    if missing_required:
+        raise ValueError(f"Missing required columns: {missing_required}")
+
+    # Select columns and handle payee
+    selected_columns = available_columns
+    if payee_column:
+        selected_columns.append(payee_column)
+    df = df[selected_columns]
+    if payee_column:
+        df = df.rename(columns={payee_column: 'payee'})
+    else:
+        df['payee'] = 'Unknown'
 
     # Create 'type' column based on account_name
     df['type'] = df['account_name'].apply(
@@ -1056,7 +1074,7 @@ def main():
     print("Performing Benford's Law analysis...")
     benford_analyzer = BenfordsLawAnalyzer()
     amounts = df['amount']  # Pass the 'amount' column as a Series
-    benford_results = benford_analyzer.analyze_dataset(amounts, "Synthetic Accounting Ledger")
+    benford_results = benford_analyzer.analyze_dataset(amounts, "Accounting Ledger")
     benford_report = benford_analyzer.generate_report(benford_results)
     print(benford_report)
     benford_analyzer.create_visualization(benford_results)
@@ -1067,6 +1085,7 @@ def main():
     advanced_results = advanced_analyzer.generate_comprehensive_analysis()
     advanced_report = advanced_analyzer.generate_summary_report()
     print(advanced_report)
+    advanced_analyzer.create_visualizations(advanced_results)
 
     print("\nAnalysis complete!")
     return benford_analyzer, benford_results, advanced_analyzer, advanced_results
