@@ -600,7 +600,75 @@ class AdvancedLedgerAnalyzer:
         
         return outlier_features
     
+
+    # updated analyze thresholds 
     def analyze_thresholds(self) -> Dict[str, any]:
+        print("Analyzing thresholds...")
+        threshold_features = {}
+        amounts = self.df['abs_amount'].dropna()
+    
+    # Check if amounts is empty or not a Series
+        if not isinstance(amounts, pd.Series) or amounts.empty:
+            threshold_features['error'] = "No valid numeric data in 'abs_amount' column after dropping NaNs"
+            return threshold_features
+
+    thresholds = {
+        'cash_reporting_10k': 10000,
+        'structuring_9999': 9999,
+        'structuring_9500': 9500,
+        'suspicious_5k': 5000,
+        'check_clearing_3k': 3000,
+        '_daily_limit_1k': 1000
+    }
+    
+def analyze_thresholds(self) -> Dict[str, any]:
+    print("Analyzing thresholds...")
+    threshold_features = {}
+    amounts = self.df['abs_amount'].dropna()
+    
+    # Validate amounts is a non-empty Series
+    if not isinstance(amounts, pd.Series) or amounts.empty:
+        threshold_features['error'] = "No valid numeric data in 'abs_amount' column after dropping NaNs"
+        return threshold_features
+
+    thresholds = {
+        'cash_reporting_10k': 10000,
+        'structuring_9999': 9999,
+        'structuring_9500': 9500,
+        'suspicious_5k': 5000,
+        'check_clearing_3k': 3000,
+        '_daily_limit_1k': 1000
+    }
+    
+    for threshold_name, threshold_value in thresholds.items():
+        # Filter for exact matches
+        exact_hits = amounts[amounts == threshold_value]
+        threshold_features[f'{threshold_name}_exact_hits'] = len(exact_hits)
+        
+        # Filter for values just under the threshold (95% to <100%)
+        just_under = amounts[(amounts >= threshold_value * 0.95) & (amounts < threshold_value)]
+        threshold_features[f'{threshold_name}_just_under'] = len(just_under)
+        
+        # Filter for values just over the threshold (>100% to 105%)
+        just_over = amounts[(amounts > threshold_value) & (amounts <= threshold_value * 1.05)]
+        threshold_features[f'{threshold_name}_just_over'] = len(just_over)
+        
+        # Filter for cluster range (90% to 110%)
+        cluster_range = amounts[(amounts >= threshold_value * 0.9) & (amounts <= threshold_value * 1.1)]
+        threshold_features[f'{threshold_name}_cluster'] = len(cluster_range)
+        threshold_features[f'{threshold_name}_cluster_rate'] = len(cluster_range) / len(amounts) * 100 if len(amounts) > 0 else 0
+    
+    # Structuring range analysis ($9,500-$9,999)
+    structuring_range = amounts[(amounts >= 9500) & (amounts <= 9999)]
+    threshold_features['structuring_indicators'] = len(structuring_range)
+    threshold_features['structuring_rate'] = len(structuring_range) / len(amounts) * 100 if len(amounts) > 0 else 0
+    if len(structuring_range) > 0:
+        structuring_transactions = self.df[self.df['abs_amount'].between(9500, 9999)]
+        threshold_features['structuring_transactions'] = structuring_transactions[['amount', 'payee', 'date']].to_dict('records')
+    
+    return threshold_features
+    '''   
+     def analyze_thresholds(self) -> Dict[str, any]:
         """
         Analyze transactions near key financial reporting thresholds.
         
@@ -650,7 +718,7 @@ class AdvancedLedgerAnalyzer:
             structuring_transactions = self.df[self.df['abs_amount'].between(9500, 9999)]
             threshold_features['structuring_transactions'] = structuring_transactions[['amount', 'payee', 'date']].to_dict('records')
         
-        return threshold_features
+        return threshold_features'''
     
     def analyze_ratios(self) -> Dict[str, any]:
         """
