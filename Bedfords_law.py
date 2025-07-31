@@ -1011,15 +1011,3 @@ class AdvancedLedgerAnalyzer:
         
         results = self.analysis_results
         
-        report = f"""
-=== ADVANCED ACCOUNTING LEDGER ANALYSIS REPORT ===
-DATASET OVERVIEW:
-- Total Transactions: {results['dataset_summary']['total_transactions']:,}
-- Unique Amounts: {results['dataset_summary']['unique_amounts']:,}
-- Amount Range: ${results['dataset_summary']['amount_range']['min']:,.2f} to ${results['dataset_summary']['amount_range']['max']:,.2f}
-- Average Amount: ${results['dataset_summary']['amount_range']['mean']:,.2f}
-- Median Amount: ${results['dataset_summary']['amount_range']['median']:,.2f}
-"""
-        if 'date_range' in results['dataset_summary']:
-            report += f"""
-- Date Range: {results['dataset_summary']['date_range']['start'].strftime('%Y-%m-%d')} to {results['dataset_summary']['date_
