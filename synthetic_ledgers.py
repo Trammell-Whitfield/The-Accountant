@@ -7,7 +7,7 @@ from typing import List, Dict, Tuple
 import json
 from scipy import stats
 import matplotlib.pyplot as plt
-'''
+
 class SyntheticLedgerGenerator:
     """
     Generates synthetic accounting ledgers with realistic transaction patterns
@@ -315,43 +315,7 @@ class SyntheticLedgerGenerator:
         json_filename = filename.replace('.csv', '.json')
         df.to_json(json_filename, orient='records', indent=2)
         print(f"Ledger also saved to {json_filename}")
-
-# Example usage
-if __name__ == "__main__":
-    # Initialize generator
-    generator = SyntheticLedgerGenerator()
-    
-    # Generate synthetic ledger
-    print("Generating synthetic accounting ledger...")
-    ledger_df = generator.generate_ledger(num_transactions=1000, fraud_percentage=0.15)
-    
-    # Display basic statistics
-    print(f"\nLedger Statistics:")
-    print(f"Total transactions: {len(ledger_df)}")
-    print(f"Legitimate transactions: {len(ledger_df[ledger_df['fraud_flag'] == 0])}")
-    print(f"Fraudulent transactions: {len(ledger_df[ledger_df['fraud_flag'] == 1])}")
-    print(f"Total amount: ${ledger_df['amount'].sum():,.2f}")
-    print(f"Average amount: ${ledger_df['amount'].mean():.2f}")
-    
-    # Show sample transactions
-    print(f"\nSample Transactions:")
-    print(ledger_df.head())
-    
-    # Validate Benford's Law
-    print(f"\nValidating Benford's Law compliance...")
-    validation_results = generator.validate_benford_law(ledger_df)
-    
-    # Plot analysis (uncomment to display plots)
-    # generator.plot_benford_analysis(ledger_df)
-    
-    # Save ledger
-    generator.save_ledger(ledger_df, "synthetic_accounting_ledger.csv")
-'''
-    
-# Improved sythetic ledgers
-
-
-class SyntheticLedgerGenerator:
+class ImprovedSyntheticLedgerGenerator:
     """
     Generates synthetic accounting ledgers with realistic transaction patterns
     following Benford's Law for legitimate entries and fraud patterns for training.
@@ -804,40 +768,26 @@ class SyntheticLedgerGenerator:
         df.to_json(json_filename, orient='records', indent=2)
         print(f"Ledger also saved to {json_filename}")
 
-# Example usage
 if __name__ == "__main__":
-    # Initialize generator with company-specific parameters
-    generator = SyntheticLedgerGenerator(
-        company_type="manufacturing",  # or "retail", "service"
+    print("Synthetic Ledger Generators Available:")
+    print("1. SyntheticLedgerGenerator - Basic generator")
+    print("2. ImprovedSyntheticLedgerGenerator - Advanced generator with realistic chart of accounts")
+    
+    # Example usage with improved generator
+    generator = ImprovedSyntheticLedgerGenerator(
+        company_type="manufacturing",
         company_size="medium"
     )
     
-    # Generate synthetic ledger
-    print("Generating realistic synthetic accounting ledger...")
+    print("\nGenerating realistic synthetic accounting ledger...")
     ledger_df = generator.generate_ledger(num_transactions=2000, fraud_percentage=0.08)
     
-    # Display basic statistics
     print(f"\nLedger Statistics:")
     print(f"Total transactions: {len(ledger_df)}")
     print(f"Legitimate transactions: {len(ledger_df[ledger_df['fraud_flag'] == 0])}")
     print(f"Fraudulent transactions: {len(ledger_df[ledger_df['fraud_flag'] == 1])}")
     print(f"Total amount: ${ledger_df['amount'].sum():,.2f}")
     print(f"Average amount: ${ledger_df['amount'].mean():.2f}")
-    
-    # Show distribution by account type
-    print(f"\nTransactions by Account Type:")
-    account_summary = ledger_df.groupby('account_code').agg({
-        'amount': ['count', 'sum', 'mean']
-    }).round(2)
-    print(account_summary.head(10))
-    
-    # Show sample transactions
-    print(f"\nSample Transactions:")
-    print(ledger_df[['transaction_id', 'date', 'account_code', 'account_name', 'amount', 'payee_payer', 'fraud_flag']].head(10))
-    
-    # Validate Benford's Law
-    print(f"\nValidating Benford's Law compliance...")
-    validation_results = generator.validate_benford_law(ledger_df)
     
     # Save ledger
     generator.save_ledger(ledger_df, "realistic_accounting_ledger.csv")
