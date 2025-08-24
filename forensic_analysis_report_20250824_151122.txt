@@ -1,0 +1,141 @@
+
+========================================================================================================================
+INTEGRATED FORENSIC ACCOUNTING SYSTEM - COMPREHENSIVE ANALYSIS REPORT
+========================================================================================================================
+
+ANALYSIS METADATA:
+  Timestamp: 2025-08-24T15:11:21.943413
+  Ledger Size: 2,000 transactions
+  Analysis Methods: RAG, Benfords_Law, Statistical_Detection
+  Columns Analyzed: transaction_id, date, description, account_code, account_name, amount, debit_credit, payee_payer, journal_entry, reference_number, fraud_flag, notes
+
+========================================================================================================================
+EXECUTIVE SUMMARY
+========================================================================================================================
+
+OVERALL ASSESSMENT:
+  Fraud Score: 23.9/100
+  Risk Level: LOW
+  Confidence Level: MEDIUM
+  Data Quality: GOOD
+
+METHOD PERFORMANCE:
+  Benford Analysis: 20.0/100 (LOW_RISK)
+  Statistical Analysis: 42.2/100 (MEDIUM_RISK)
+  Rag Analysis: 0.0/100 (LOW_RISK)
+
+========================================================================================================================
+INTEGRATED ASSESSMENT
+========================================================================================================================
+
+CONSENSUS INDICATORS:
+  No strong consensus indicators detected
+
+CONFLICTING INDICATORS:
+  No significant conflicts between methods
+
+INDIVIDUAL METHOD SCORES:
+  Benford Analysis: 20.0/100
+  Statistical Analysis: 42.2/100
+  Rag Analysis: 0.0/100
+
+========================================================================================================================
+DETAILED ANALYSIS RESULTS
+========================================================================================================================
+
+BENFORD'S LAW ANALYSIS:
+  Sample Size: 2,000
+  Fraud Score: 20/100
+  Chi-Square p-value: 0.000002
+  Follows Benford's Law: NO
+  Quality Grade: F
+
+STATISTICAL FRAUD DETECTION:
+  Overall Fraud Score: 42.2/100
+  Risk Level: MEDIUM
+  Flagged Transactions: 50
+  Methods Completed: 7
+
+RAG-BASED ANALYSIS:
+  High-Risk Transactions: 0
+  Compliance Issues: 0
+  Pattern Anomalies: 5
+
+
+========================================================================================================================
+RECOMMENDATIONS
+========================================================================================================================
+
+PRIORITIZED ACTION ITEMS (2 total):
+
+ 1. ⚠️ [HIGH] [DATA_INTEGRITY]
+     Action: Investigate potential data manipulation
+     Rationale: Significant deviation from Benford's Law detected
+
+ 2. 📌 [MEDIUM] [TRANSACTION_REVIEW]
+     Action: Review 50 flagged transactions
+     Rationale: Statistical analysis identified suspicious transaction patterns
+
+
+========================================================================================================================
+HIGHEST RISK TRANSACTIONS
+========================================================================================================================
+
+TOP 10 TRANSACTIONS REQUIRING IMMEDIATE REVIEW:
+
+ 1. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+ 2. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+ 3. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+ 4. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+ 5. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+ 6. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+ 7. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+ 8. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+ 9. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+10. Transaction flagged by Statistical Analysis:
+     Risk Factors: Statistical outlier detected, Anomalous pattern in multi-dimensional analysis
+
+
+========================================================================================================================
+METHODOLOGY & TECHNICAL DETAILS
+========================================================================================================================
+
+ANALYSIS METHODS EMPLOYED:
+  1. RAG-Based Analysis: Knowledge-driven transaction evaluation
+  2. Benford's Law Testing: First-digit distribution analysis
+  3. Statistical Fraud Detection: Multi-method anomaly detection
+  4. Integrated Assessment: Consensus and conflict analysis
+
+QUALITY ASSURANCE:
+  • Cross-method validation performed
+  • Statistical significance testing applied
+  • Confidence intervals calculated where applicable
+  • Data quality assessment completed
+
+LIMITATIONS:
+  • Analysis based on available data fields
+  • Some methods require minimum sample sizes
+  • Results should be validated through manual review
+  • External factors may influence patterns
+
+========================================================================================================================
+END OF COMPREHENSIVE REPORT
+========================================================================================================================
