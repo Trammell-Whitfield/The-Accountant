@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forensic Analysis Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background-color: #2c3e50; color: white; padding: 20px; text-align: center; }
+        .summary { background-color: #ecf0f1; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .metric { display: inline-block; margin: 10px; padding: 10px; background-color: white; border-radius: 5px; min-width: 200px; }
+        .risk-high { border-left: 5px solid #e74c3c; }
+        .risk-medium { border-left: 5px solid #f39c12; }
+        .risk-low { border-left: 5px solid #27ae60; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Forensic Accounting Analysis Dashboard</h1>
+        <p>Generated on 2025-08-24 15:06:05</p>
+    </div>
+    
+    <div class="summary">
+        <h2>Executive Summary</h2>
+        <div class="metric risk-medium">
+            <h3>Overall Fraud Score</h3>
+            <p><strong>45.7/100</strong></p>
+        </div>
+        <div class="metric">
+            <h3>Risk Level</h3>
+            <p><strong>MEDIUM</strong></p>
+        </div>
+        <div class="metric">
+            <h3>Confidence</h3>
+            <p><strong>HIGH</strong></p>
+        </div>
+        <div class="metric">
+            <h3>Transactions Analyzed</h3>
+            <p><strong>1,500</strong></p>
+        </div>
+    </div>
+    
+    <div class="summary">
+        <h2>Analysis Methods Performance</h2>
+
+        <div class="metric">
+            <h4>Benford Analysis</h4>
+            <p>Score: <strong>52.3/100</strong></p>
+            <p>Status: <strong>HIGH_RISK</strong></p>
+        </div>
+
+        <div class="metric">
+            <h4>Statistical Analysis</h4>
+            <p>Score: <strong>38.9/100</strong></p>
+            <p>Status: <strong>MEDIUM_RISK</strong></p>
+        </div>
+
+        <div class="metric">
+            <h4>Rag Analysis</h4>
+            <p>Score: <strong>46.2/100</strong></p>
+            <p>Status: <strong>MEDIUM_RISK</strong></p>
+        </div>
+
+    </div>
+    
+    <div class="summary">
+        <h2>Key Findings</h2>
+        <ul>
+            <li>Significant Benford's Law violations detected</li>
+            <li>High duplicate transaction rate identified</li>
+            <li>Unusual clustering around reporting thresholds</li>
+
+        </ul>
+    </div>
+    
+    <div class="summary">
+        <h2>Critical Alerts</h2>
+        <ul>
+            <li style='color: red;'><strong>Multiple fraud indicators detected across methods</strong></li>
+
+        </ul>
+    </div>
+</body>
+</html>
