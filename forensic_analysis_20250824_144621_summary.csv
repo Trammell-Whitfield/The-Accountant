@@ -1,0 +1,6 @@
+Metric,Value,Category
+Overall Fraud Score,24.6/100,Overall Assessment
+Risk Level,LOW,Overall Assessment
+Benford Analysis Score,20.0/100,Method Performance
+Statistical Analysis Score,44.0/100,Method Performance
+Rag Analysis Score,0.0/100,Method Performance
